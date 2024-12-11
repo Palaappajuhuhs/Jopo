@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Pistas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .game-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Juego de Pistas</h1>
+        <div class="pista">
+            <p>Primera pista: Soy un animal que dice "muu". ¿Quién soy?</p>
+            <input type="text" id="respuesta1" placeholder="Escribe tu respuesta" />
+            <button onclick="verificarRespuesta(1)">Desbloquear siguiente pista</button>
+        </div>
+        <div class="pista" id="pista2" style="display:none;">
+            <p>Segunda pista: Soy una fruta amarilla y curvada. ¿Qué soy?</p>
+            <input type="text" id="respuesta2" placeholder="Escribe tu respuesta" />
+            <button onclick="verificarRespuesta(2)">Desbloquear siguiente pista</button>
+        </div>
+        <div class="pista" id="pista3" style="display:none;">
+            <p>¡Felicidades! Has resuelto todas las pistas.</p>
+        </div>
+    </div>
+
+    <script>
+        function verificarRespuesta(pista) {
+            let respuesta;
+            let siguientePista;
+
+            if (pista === 1) {
+                respuesta = document.getElementById('respuesta1').value.toLowerCase();
+                if (respuesta === 'vaca') {
+                    siguientePista = document.getElementById('pista2');
+                    siguientePista.style.display = 'block';
+                    alert('Respuesta correcta! Siguiente pista desbloqueada.');
+                } else {
+                    alert('Respuesta incorrecta. Inténtalo de nuevo.');
+                }
+            } else if (pista === 2) {
+                respuesta = document.getElementById('respuesta2').value.toLowerCase();
+                if (respuesta === 'plátano' || respuesta === 'banana') {
+                    document.getElementById('pista3').style.display = 'block';
+                    alert('¡Felicidades! Has completado el juego.');
+                } else {
+                    alert('Respuesta incorrecta. Inténtalo de nuevo.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
